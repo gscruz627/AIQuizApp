@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Quiz App - Testing Stage</title>
+</head>
+<body>
+    <h1>AI Quiz App - Testing Stage</h1>
+
+    <p>Logged In as: </p>
+    <p id="username"></p>
+
+    <button id="logout-btn">Logout</button>
+
+    <form id="auth">
+        <h2>Register / Log In</h2>
+        <label for="auth-name">Name: </label>
+        <input type="text" name="auth-username" id="auth-username">
+        <label for="auth-email">Email:</label>
+        <input type="email" name="auth-email" id="auth-email">
+        <label for="auth-password">Password: </label>
+        <input type="password" name="auth-password" id="auth-password">
+        <button type="button" onclick="login()">Login</button>
+        <button type="button" onclick="register()">Register</button>
+    </form>
+
+    <form id="create-organization">
+        <h2>Create Organization</h2>
+        <label for="organization-title">Title: </label>
+        <input type="text" name="organization-title" id="organization-title">
+        <button type="submit">Create</button>
+    </form>
+
+    <form id="join-organization">
+        <h2>Join Organization</h2>
+        <label for="join-code">Join Code: </label>
+        <input type="text" name="join-code" id="join-code">
+        <button type="submit">Join</button>
+    </form>
+
+    <form id="create-quiz">
+        <h2>Generate Quiz</h2>
+
+        <label for="quiz-title">Title: </label>
+        <input type="text" name="quiz-title" id="quiz-title">
+
+        <label for="prompt">Prompt: </label>
+        <textarea name="prompt" id="prompt" cols="30" rows="10"></textarea>
+
+        <button type="submit">Create</button>
+    </form>
+
+    <a href="quizes.html">Go to Quizzes Page</a>
+
+    <ul id="pending-join-requests">
+        <h2>Pending Join Requests</h2>
+
+    </ul>
+
+    <ul id="organizations">
+        <h2>Organizations</h2>
+
+    </ul>
+
+    <ul id="quizzes-list">
+        <h2>Saved Quizzes</h2>
+    </ul>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <script src="script.js"></script>
+    
+</body>
+</html>
