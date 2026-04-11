@@ -19,9 +19,11 @@ namespace AIQuizApp.Controllers
     public class UsersController : ControllerBase
     {
         private readonly AppDbContext dbcontext;
-        public UsersController(AppDbContext _dbcontext)
+        private readonly IConfiguration config;
+        public UsersController(AppDbContext _dbcontext, IConfiguration _config)
         {
             dbcontext = _dbcontext;
+            config = _config;
         }
         [HttpGet]
         [Route("{id:guid}")]
@@ -168,11 +170,11 @@ namespace AIQuizApp.Controllers
                 new Claim(ClaimTypes.Name, user.Email),
                 new Claim("name", user.Name)
             ];
-            SymmetricSecurityKey key = new(Encoding.UTF8.GetBytes("q9H+f7v4ZsX2bL9pV1JkR8wM3u6nY0dPq7xC5vF2bG1=q9H+f7v4ZsX2bL9pV1JkR8wM3u6nY0dPq7xC5vF2bG1="));
+            SymmetricSecurityKey key = new(Encoding.UTF8.GetBytes(config["Jwt:Key"]));
             SigningCredentials credentials = new(key, SecurityAlgorithms.HmacSha512);
             JwtSecurityToken tokenDescriptor = new(
-                issuer: "AIQUIZ_Issuer_Class493",
-                audience: "*",
+                issuer: config["jwt:Issuer"],
+                audience: config["jwt:Audience"],
                 claims: claims,
                 expires: DateTime.UtcNow.AddMinutes(15),
                 signingCredentials: credentials

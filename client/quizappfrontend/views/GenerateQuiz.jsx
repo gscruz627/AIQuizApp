@@ -53,7 +53,7 @@ function GenerateQuiz() {
         e.preventDefault();
         try{
             const groq = new Groq({
-                apiKey: "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",
+                apiKey: import.meta.env.VITE_AI_KEY,
                 dangerouslyAllowBrowser: true
             });
 
