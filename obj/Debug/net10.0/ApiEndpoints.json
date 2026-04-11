@@ -1,6 +1,27 @@
 [
   {
     "ContainingType": "AIQuizApp.Controllers.MembershipsController",
+    "Method": "ExpelMember",
+    "RelativePath": "api/Memberships/{id}/member",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "memberDTO",
+        "Type": "AIQuizApp.Data.ExpelMemberDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIQuizApp.Controllers.MembershipsController",
     "Method": "RequestJoinOrganization",
     "RelativePath": "api/Memberships/join",
     "HttpMethod": "POST",
@@ -145,7 +166,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "AIQuizApp.Models.Organization",
+        "Type": "AIQuizApp.Data.OrganizationReturnDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -154,6 +175,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "AIQuizApp.Controllers.OrganizationsController",
+    "Method": "DeleteOrganization",
+    "RelativePath": "api/Organizations/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "AIQuizApp.Controllers.OrganizationsController",
@@ -208,11 +245,21 @@
         "Name": "saved",
         "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
+      },
+      {
+        "Name": "my",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "taken",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Quiz, AIQuizApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[AIQuizApp.Data.QuizInfoDTO, AIQuizApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -323,6 +370,58 @@
   },
   {
     "ContainingType": "AIQuizApp.Controllers.QuizesController",
+    "Method": "GetStudentAttempts",
+    "RelativePath": "api/Quizes/{id}/student-attempts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[AIQuizApp.Data.QuizScoreDTO, AIQuizApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AIQuizApp.Controllers.QuizesController",
+    "Method": "GetAttempts",
+    "RelativePath": "api/Quizes/attempts/{quizId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "quizId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[AIQuizApp.Data.SubmitQuizDTO, AIQuizApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AIQuizApp.Controllers.QuizesController",
     "Method": "Save",
     "RelativePath": "api/Quizes/save/{id}",
     "HttpMethod": "POST",
@@ -365,6 +464,22 @@
   },
   {
     "ContainingType": "AIQuizApp.Controllers.QuizesController",
+    "Method": "SubmitQuiz",
+    "RelativePath": "api/Quizes/submit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "quizDTO",
+        "Type": "AIQuizApp.Data.SubmitQuizDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIQuizApp.Controllers.QuizesController",
     "Method": "Unsave",
     "RelativePath": "api/Quizes/unsave/{id}",
     "HttpMethod": "POST",
@@ -394,6 +509,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIQuizApp.Controllers.UsersController",
+    "Method": "Edit",
+    "RelativePath": "api/Users",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "editDTO",
+        "Type": "AIQuizApp.Data.UserEditDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AIQuizApp.Data.UserDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "AIQuizApp.Controllers.UsersController",

@@ -12,7 +12,7 @@ namespace AIQuizApp.Controllers
     public class OrganizationsController : Controller
     {
         private readonly AppDbContext dbcontext;
-        public OrganizationsController(AppDbContext _dbcontext) 
+        public OrganizationsController(AppDbContext _dbcontext)
         {
             dbcontext = _dbcontext;
         }
@@ -22,7 +22,7 @@ namespace AIQuizApp.Controllers
         public async Task<ActionResult<List<OrganizationInfoDTO>>> GetOrganizationsInfo([FromQuery] Guid userId)
         {
             List<OrganizationInfoDTO> organizations = await dbcontext.Memberships.Include(m => m.Organization).Where(m => m.UserId == userId)
-                .Select(m => new OrganizationInfoDTO{
+                .Select(m => new OrganizationInfoDTO {
                     Id = m.OrganizationId,
                     Name = m.Organization.Name,
                     Role = m.Role
@@ -34,15 +34,30 @@ namespace AIQuizApp.Controllers
 
 
         [HttpGet]
+        [Authorize]
         [Route("{id:guid}")]
-        public async Task<ActionResult<Organization>> GetOrganizationById(Guid id)
+        public async Task<ActionResult<OrganizationReturnDTO>> GetOrganizationById(Guid id)
         {
-            Organization? organization = await dbcontext.Organizations.FindAsync(id);
+            Guid userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            Organization organization = (await dbcontext.Organizations.FindAsync(id))!;
+            Membership? membership = await dbcontext.Memberships.Where(m => m.UserId == userId && m.OrganizationId == id).FirstOrDefaultAsync();
+            if (membership is null)
+            {
+                return Unauthorized();
+            }
+            OrganizationReturnDTO returnDTO = new() { Name = organization.Name, Role = membership.Role };
+            if (membership.Role != "student")
+            {
+                returnDTO.JoinCode = organization.JoinCode;
+                List<UserInOrgDTO> returnmembers = await dbcontext.Memberships.Include(m => m.User).Where(m => m.OrganizationId == id && m.Role != "admin")
+                    .Select(m => new UserInOrgDTO { Email = m.User.Email, Id = m.User.Id, Name = m.User.Name, Role = m.Role }).ToListAsync();
+                returnDTO.Members = returnmembers;
+            }
             if (organization is null)
             {
                 return NotFound();
             }
-            return Ok(organization);
+            return Ok(returnDTO);
         }
 
         [HttpPost]
@@ -85,7 +100,33 @@ namespace AIQuizApp.Controllers
             await dbcontext.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetOrganizationById), new { organization.Id }, organization);
-            
+
+        }
+
+        [HttpDelete]
+        [Authorize]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> DeleteOrganization(Guid id)
+        {
+            Guid userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            Organization organization = (await dbcontext.Organizations.FindAsync(id))!;
+            if (organization is null)
+            {
+                return NotFound();
+            }
+            Membership? membership = await dbcontext.Memberships.Where(m => m.UserId == userId && m.OrganizationId == id).FirstOrDefaultAsync();
+            if (membership is null)
+            {
+                return Unauthorized();
+            }
+            if (membership.Role != "Admin")
+            {
+                return Unauthorized();
+            }
+            dbcontext.Organizations.Remove(organization);
+            await dbcontext.SaveChangesAsync();
+            return NoContent();
+
         }
     }
 }

@@ -19,6 +19,7 @@ namespace AIQuizApp.Data
         public DbSet<Membership> Memberships { get; set; }
         public DbSet<JoinRequest> JoinRequests { get; set; }
         public DbSet<UserSavedQuiz> SavedQuizzes { get; set; }
+        public DbSet<UserTakesQuiz> TakenQuizzes { get; set; }
 
 protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

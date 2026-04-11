@@ -1,5 +1,6 @@
 ﻿using AIQuizApp.Data;
 using AIQuizApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -64,7 +65,41 @@ namespace AIQuizApp.Controllers
             return NoContent();
         }
 
+        [HttpPatch]
+        [Authorize]
+        public async Task<ActionResult<UserDTO>> Edit([FromBody] UserEditDTO editDTO)
+        {
+            Guid authUserId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            User? user = await dbcontext.Users.Where(u => u.Email == editDTO.Email).FirstOrDefaultAsync();
+            if(user is null)
+            {
+                return BadRequest("User Does Not Exist.");
+            }
+            if(user.Id != authUserId)
+            {
+                return Forbid();
+            }
+            if (!String.IsNullOrEmpty(editDTO.Name))
+            {
+                user.Name = editDTO.Name;
+            }
+            if (!String.IsNullOrEmpty(editDTO.Email))
+            {
+                user.Email = editDTO.Email;
+            }
+            if (!String.IsNullOrEmpty(editDTO.Password))
+            {
+                PasswordHasher<User> hasher = new();
+                string hashedPwd = hasher.HashPassword(null, editDTO.Password);
+                user.Password = hashedPwd;
+            }
+            await dbcontext.SaveChangesAsync();
+            UserDTO returnDTO = new() { Email = user.Email, Name = user.Name };
+            return Ok(returnDTO);
+        } 
+
         [HttpPost]
+        [AllowAnonymous]
         [Route("login")]
         public async Task<ActionResult<TokensDTO>> Login([FromBody] LoginDTO loginDTO)
         {

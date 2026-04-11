@@ -9,9 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseNpgsql(
-        builder.Configuration.GetConnectionString("DefaultConnection")
-    );
+    options.UseNpgsql("Host=bngpnfevvvfckhccj4wl-postgresql.services.clever-cloud.com;Port=5432;Database=bngpnfevvvfckhccj4wl;Username=u6tmewhxdqbrn8qtlrdu;Password=MaBetM1nHicpJ7LBmRe0iimsAG1LAP;Ssl Mode=Require;Trust Server Certificate=true");
     options.EnableSensitiveDataLogging();
     options.EnableDetailedErrors();
 });
@@ -29,13 +27,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         ValidateIssuerSigningKey = true
     };
 });
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
         policy =>
         {
             policy
-                .AllowAnyOrigin()
+                .SetIsOriginAllowed(_ => true)
                 .AllowAnyMethod()
                 .AllowAnyHeader();
         });
@@ -46,14 +45,14 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.UseRouting();
 
-app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 
 app.UseAuthentication();
-
 app.UseAuthorization();
+
+app.UseHttpsRedirection();
 
 app.MapControllers();
 

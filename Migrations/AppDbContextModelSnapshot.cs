@@ -153,6 +153,28 @@ namespace AIQuizApp.Migrations
                     b.ToTable("SavedQuizzes");
                 });
 
+            modelBuilder.Entity("AIQuizApp.Models.UserTakesQuiz", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("QuizId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TakenQuizzes");
+                });
+
             modelBuilder.Entity("Quiz", b =>
                 {
                     b.Property<Guid>("Id")
@@ -170,8 +192,8 @@ namespace AIQuizApp.Migrations
                         .IsRequired()
                         .HasColumnType("jsonb");
 
-                    b.Property<int>("Likes")
-                        .HasColumnType("integer");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("OrganizationId")
                         .HasColumnType("uuid");
@@ -276,6 +298,17 @@ namespace AIQuizApp.Migrations
                         .IsRequired();
 
                     b.Navigation("Quiz");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AIQuizApp.Models.UserTakesQuiz", b =>
+                {
+                    b.HasOne("AIQuizApp.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

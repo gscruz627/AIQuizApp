@@ -9,8 +9,7 @@ public class Quiz
     public List<string> Questions { get; set; } = new();
     public List<List<string>> Answers { get; set; } = new();
     public List<int> CorrectAnswerIndices { get; set; } = new();
-
-    public int Likes { get; set; } = 0;
+    public DateTime CreatedAt { get; set; }
 
     public Guid? OrganizationId { get; set; }
     [JsonIgnore]

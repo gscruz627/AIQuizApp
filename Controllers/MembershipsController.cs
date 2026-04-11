@@ -2,6 +2,7 @@
 using AIQuizApp.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -161,5 +162,32 @@ namespace AIQuizApp.Controllers
             return NoContent();
             
         }
+
+        [HttpDelete]
+        [Authorize]
+        [Route("{id:guid}/member")]
+        public async Task<IActionResult> ExpelMember(Guid id, [FromBody] ExpelMemberDTO memberDTO)
+        {
+            Guid userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            User user = (await dbcontext.Users.FindAsync(userId))!;
+            Membership? membership = await dbcontext.Memberships.FirstOrDefaultAsync(m => m.UserId == userId && m.OrganizationId == id);
+            if (membership is null)
+            {
+                return Forbid();
+            }
+            if(membership.Role != "Admin")
+            {
+                return Forbid();
+            }
+            Membership? targetMembership = await dbcontext.Memberships.FirstOrDefaultAsync(m => m.UserId == memberDTO.MemberId && m.OrganizationId == id);
+            if (targetMembership is null || targetMembership.Role == "Admin")
+            {
+                return BadRequest("User is not a valid removable member");
+            }
+            dbcontext.Memberships.Remove(targetMembership);
+            await dbcontext.SaveChangesAsync();
+            return NoContent();
+        }
+
     }
 }
