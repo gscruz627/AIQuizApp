@@ -7,6 +7,7 @@ import CommonNavbar from '../components/CommonNavbar';
 
 function Organization() {
 
+    const SERVER_URL = import.meta.env.VITE_URL;
     const token = localStorage.getItem("access-token")
     const [organizationName, setOrganizationName] = useState("");
     const [organizationRole, setOrganizationRole] = useState("");
@@ -22,7 +23,7 @@ function Organization() {
     async function allowRequest(joinRequestId, role) {
         try{
             await checkAuth(navigate);
-            const request = await fetch(`https://localhost:7015/api/memberships/resolution/${joinRequestId}`, {
+            const request = await fetch(`${SERVER_URL}/api/memberships/resolution/${joinRequestId}`, {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json",
@@ -43,7 +44,7 @@ function Organization() {
     async function denyRequest(joinRequestId) {
         try{
             await checkAuth(navigate);
-            const request = await fetch(`https://localhost:7015/api/memberships/resolution/${joinRequestId}`, {
+            const request = await fetch(`${SERVER_URL}/api/memberships/resolution/${joinRequestId}`, {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json",
@@ -62,7 +63,7 @@ function Organization() {
     async function loadOrgInfo(){
         try{
             await checkAuth(navigate);
-            const request = await fetch(`https://localhost:7015/api/organizations/${organizationId}`, {
+            const request = await fetch(`${SERVER_URL}/api/organizations/${organizationId}`, {
                 headers: {
                     "Authorization" : `Bearer ${localStorage.getItem("access-token")}`
                 }
@@ -82,7 +83,7 @@ function Organization() {
     async function loadOrgQuizzes(){
         try{
             await checkAuth(navigate);
-            const request = await fetch(`https://localhost:7015/api/quizes?organizationId=${organizationId}&limit=5`, {
+            const request = await fetch(`${SERVER_URL}/api/quizes?organizationId=${organizationId}&limit=5`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("access-token")}`
@@ -102,7 +103,7 @@ function Organization() {
     async function expelMember(memberId){
         try{
             await checkAuth(navigate);
-            const request = await fetch(`https://localhost:7015/api/memberships/${organizationId}/member`, {
+            const request = await fetch(`${SERVER_URL}/api/memberships/${organizationId}/member`, {
                 method: "DELETE",
                 headers: {
                     "Authorization" : `Bearer ${localStorage.getItem("access-token")}`,
@@ -129,7 +130,7 @@ function Organization() {
     async function loadJoinRequests(){
         try{
             await checkAuth(navigate);
-            const request = await fetch(`https://localhost:7015/api/memberships/joinrequests?organizationId=${organizationId}`, {
+            const request = await fetch(`${SERVER_URL}/api/memberships/joinrequests?organizationId=${organizationId}`, {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("access-token")}`
                 }
@@ -148,7 +149,7 @@ function Organization() {
         }
         try{
             await checkAuth(navigate);
-            const request = await fetch(`https://localhost:7015/api/organizations/${organizationId}`, {
+            const request = await fetch(`${SERVER_URL}/api/organizations/${organizationId}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("access-token")}`

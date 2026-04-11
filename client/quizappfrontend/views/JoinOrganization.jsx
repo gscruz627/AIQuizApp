@@ -15,11 +15,13 @@ function JoinOrganization() {
     const token = localStorage.getItem('access-token');
     const navigate = useNavigate();
 
+    const SERVER_URL = import.meta.env.VITE_URL;
+
     async function join(e){
         e.preventDefault();
         try{
             await checkAuth(navigate);
-            const request = await fetch("https://localhost:7015/api/memberships/join", {
+            const request = await fetch(`${SERVER_URL}/api/memberships/join`, {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json",
@@ -46,7 +48,7 @@ function JoinOrganization() {
     async function cancelJoinRequest(joinrequestid){
         try{
             await checkAuth(navigate);
-            const request = await fetch(`https://localhost:7015/api/memberships/resolution/${joinrequestid}`, {
+            const request = await fetch(`${SERVER_URL}/api/memberships/resolution/${joinrequestid}`, {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json",
@@ -69,7 +71,7 @@ function JoinOrganization() {
     async function loadPendingRequests(){
         try{
             await checkAuth(navigate);
-            const request = await fetch(`https://localhost:7015/api/memberships/joinrequests?userId=${localStorage.getItem("userid")}`, {
+            const request = await fetch(`${SERVER_URL}/api/memberships/joinrequests?userId=${localStorage.getItem("userid")}`, {
                 headers: {
                     "Content-Type" : "application/json",
                     "Authorization" : `Bearer ${localStorage.getItem("access-token")}`

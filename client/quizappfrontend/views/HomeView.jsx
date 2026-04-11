@@ -6,14 +6,13 @@ import { logout, checkAuth } from "../functions";
 
 
 function HomeView() {
-
     const [searchParams] = useSearchParams();
     const organizationId = searchParams.get("organizationId");
     const saved = searchParams.get("saved");
     const my = searchParams.get("my");
     const taken = searchParams.get("taken");
 
-    const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+    const SERVER_URL = import.meta.env.VITE_URL;
 
     const token = localStorage.getItem("access-token");
     const [featuredQuizzes, setFeaturedQuizzes] = useState([]);
@@ -28,15 +27,15 @@ function HomeView() {
             await checkAuth(navigate);
             let route;
             if(organizationId){
-                route = `https://localhost:7015/api/quizes?organizationId=${organizationId}`
+                route = `${SERVER_URL}/api/quizes?organizationId=${organizationId}`
             } else if (saved){
-                route = "https://localhost:7015/api/quizes?saved=true"
+                route = `${SERVER_URL}/api/quizes?saved=true`
             } else if (my){
-                route = "https://localhost:7015/api/quizes?my=true"
+                route = `${SERVER_URL}/api/quizes?my=true`
             } else if (taken){
-                route = "https://localhost:7015/api/quizes?taken=true"
+                route = `${SERVER_URL}/api/quizes?taken=true`
             } else {
-                route = "https://localhost:7015/api/quizes"
+                route = `${SERVER_URL}/api/quizes`
             }
             const request = await fetch(route, {
                 method: "GET",

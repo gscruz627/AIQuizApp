@@ -13,12 +13,14 @@ function Login() {
     const [successMsg, setSuccessMsg] = useState("");
     const [failureMsg, setFailureMsg] = useState("");
 
+    const SERVER_URL = import.meta.env.VITE_URL;
+
     async function login(e){
 
         e.preventDefault()
 
         try{
-            const request = await fetch("https://localhost:7015/api/users/login", {
+            const request = await fetch(`${SERVER_URL}/api/users/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json"

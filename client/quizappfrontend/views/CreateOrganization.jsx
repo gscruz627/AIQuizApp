@@ -5,6 +5,8 @@ import CommonNavbar from '../components/CommonNavbar';
 import { checkAuth } from '../functions';
 
 function CreateOrganization() {
+
+    const SERVER_URL = import.meta.env.VITE_URL
     
     const token = localStorage.getItem("access-token")
     const [orgTitle, setOrgTitle] = useState("");
@@ -14,7 +16,7 @@ function CreateOrganization() {
         e.preventDefault();
         try{
             await checkAuth(navigate);
-            const request = await fetch("https://localhost:7015/api/organizations", {
+            const request = await fetch(`${SERVER_URL}/api/organizations`, {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json",

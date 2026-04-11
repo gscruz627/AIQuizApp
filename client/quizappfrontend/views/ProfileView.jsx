@@ -13,6 +13,7 @@ function ProfileView() {
     const [failureMsg, setFailureMsg] = useState("");
     const [successMsg, setSuccessMsg] = useState("");
     const navigate = useNavigate();
+    const SERVER_URL = import.meta.env.VITE_URL;
 
     async function edit(e){
 
@@ -20,7 +21,7 @@ function ProfileView() {
 
         try{
             await checkAuth(navigate);
-            const request = await fetch("https://localhost:7015/api/users", {
+            const request = await fetch(`${SERVER_URL}/api/users`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type" : "application/json",

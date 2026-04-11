@@ -169,7 +169,7 @@ function QuizView() {
     async function loadQuiz(){
       try{
         await checkAuth(navigate);
-        const request = await fetch(`https://localhost:7015/api/quizes/${quizId}`, {
+        const request = await fetch(`${SERVER_URL}/api/quizes/${quizId}`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("access-token")}`
@@ -177,7 +177,7 @@ function QuizView() {
         });
         const response = await request.json();
         if(response.organizationId){
-          const orgRequest = await fetch(`https://localhost:7015/api/organizations/${response.organizationId}`, {
+          const orgRequest = await fetch(`${SERVER_URL}/api/organizations/${response.organizationId}`, {
             method: "GET",
             headers: {
               "Authorization" : `Bearer ${localStorage.getItem("access-token")}`
@@ -190,7 +190,7 @@ function QuizView() {
           const orgResponse = await orgRequest.json();
           setOrganizationMembership(orgResponse);
           if(orgResponse.role == "Instructor"){
-            const studentAttemptsRequest = await fetch(`https://localhost:7015/api/quizes/${quizId}/student-attempts`, {
+            const studentAttemptsRequest = await fetch(`${SERVER_URL}/api/quizes/${quizId}/student-attempts`, {
               method: "GET",
               headers: {
                 "Authorization" : `Bearer ${localStorage.getItem("access-token")}`
@@ -219,7 +219,7 @@ const transformed = {
 };
 
 setQuiz(transformed);
-        const savedResponse = await fetch(`https://localhost:7015/api/quizes/saved/${quizId}/`, {
+        const savedResponse = await fetch(`${SERVER_URL}/api/quizes/saved/${quizId}/`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("access-token")}`
@@ -235,7 +235,7 @@ setQuiz(transformed);
     async function save(){
       try{
         await checkAuth(navigate);
-        const response = await fetch(`https://localhost:7015/api/quizes/save/${quizId}`, {
+        const response = await fetch(`${SERVER_URL}/api/quizes/save/${quizId}`, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("access-token")}`,
@@ -254,7 +254,7 @@ setQuiz(transformed);
     async function unsave(){
       try{
         await checkAuth(navigate);
-          const response = await fetch(`https://localhost:7015/api/quizes/unsave/${quizId}`, {
+          const response = await fetch(`${SERVER_URL}/api/quizes/unsave/${quizId}`, {
               method: "POST",
               headers: {
                   "Authorization": `Bearer ${localStorage.getItem("access-token")}`,
@@ -273,7 +273,7 @@ setQuiz(transformed);
     async function loadAttempts() {
       try{
         await checkAuth(navigate);
-        const request = await fetch(`https://localhost:7015/api/quizes/attempts/${quiz.id}`, {
+        const request = await fetch(`${SERVER_URL}/api/quizes/attempts/${quiz.id}`, {
           method: "GET",
           headers: {
             "Content-Type" : "application/json",
@@ -294,7 +294,7 @@ setQuiz(transformed);
       return;
     }
       try{
-          const response = await fetch(`https://localhost:7015/api/quizes/${quizId}`, {
+          const response = await fetch(`${SERVER_URL}/api/quizes/${quizId}`, {
               method: "DELETE",
               headers: {
                   'Authorization': `Bearer ${localStorage.getItem("access-token")}`
@@ -331,7 +331,7 @@ setQuiz(transformed);
       if(!quizDone){
         setQuizDone(true);
         try{
-          const request = await fetch("https://localhost:7015/api/quizes/submit", {
+          const request = await fetch(`${SERVER_URL}/api/quizes/submit`, {
             method: "POST",
             headers: {
               "Content-Type" : "application/json",
