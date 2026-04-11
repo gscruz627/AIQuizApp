@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|c:\\users\\gusta\\desktop\\programs\\aiquizapp\\.dockerignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|solutionrelative:.dockerignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|c:\\users\\gusta\\desktop\\programs\\aiquizapp\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|c:\\users\\gusta\\desktop\\programs\\aiquizapp\\aiquizapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|solutionrelative:aiquizapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|c:\\users\\gusta\\desktop\\programs\\aiquizapp\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,19 +35,58 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": ".dockerignore",
+              "DocumentMoniker": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\.dockerignore",
+              "RelativeDocumentMoniker": ".dockerignore",
+              "ToolTip": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\.dockerignore",
+              "RelativeToolTip": ".dockerignore",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAIwBYAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-11T14:57:24.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AIQuizApp",
+              "DocumentMoniker": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\AIQuizApp.csproj",
+              "RelativeDocumentMoniker": "AIQuizApp.csproj",
+              "ToolTip": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\AIQuizApp.csproj",
+              "RelativeToolTip": "AIQuizApp.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-11T14:56:00.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Dockerfile",
+              "RelativeDocumentMoniker": "Dockerfile",
+              "ToolTip": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Dockerfile",
+              "RelativeToolTip": "Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-11T14:55:34.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
               "ToolTip": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Controllers\\UsersController.cs",
               "RelativeToolTip": "Controllers\\UsersController.cs",
-              "ViewState": "AgIAALAAAAAAAAAAAAAcwL4AAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAQwL4AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-11T14:35:34.44Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -43,8 +94,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAAACsAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-11T14:24:42.946Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-11T14:24:42.946Z"
             }
           ]
         }

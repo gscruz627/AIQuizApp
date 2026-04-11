@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AIQuizApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ffa6d2e60b8429ee0a8309c96514602400fc1b7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+42d7856827c9653bb9121267bc2c223d247fa038")]
 [assembly: System.Reflection.AssemblyProductAttribute("AIQuizApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AIQuizApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
