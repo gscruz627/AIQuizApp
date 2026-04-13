@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AIQuizApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260411032042_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20260413014016_InitialBlahMigraitons")]
+    partial class InitialBlahMigraitons
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -3,12 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|c:\\users\\gusta\\desktop\\programs\\aiquizapp\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|c:\\users\\gusta\\desktop\\programs\\aiquizapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Migrations\\20260413014016_InitialBlahMigraitons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20260413014016_InitialBlahMigraitons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|c:\\users\\gusta\\desktop\\programs\\aiquizapp\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Migrations\\20260413013819_InitialBlahMigraitons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20260413013819_InitialBlahMigraitons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|c:\\users\\gusta\\desktop\\programs\\aiquizapp\\.dockerignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|solutionrelative:.dockerignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|c:\\users\\gusta\\desktop\\programs\\aiquizapp\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|c:\\users\\gusta\\desktop\\programs\\aiquizapp\\aiquizapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|solutionrelative:aiquizapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|c:\\users\\gusta\\desktop\\programs\\aiquizapp\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F508AD0-0568-4C40-B662-CE137426EA31}|AIQuizApp.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,30 +42,105 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "20260413014016_InitialBlahMigraitons.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Migrations\\20260413014016_InitialBlahMigraitons.cs",
+              "RelativeDocumentMoniker": "Migrations\\20260413014016_InitialBlahMigraitons.cs",
+              "ToolTip": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Migrations\\20260413014016_InitialBlahMigraitons.cs",
+              "RelativeToolTip": "Migrations\\20260413014016_InitialBlahMigraitons.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T01:40:17.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "Data\\AppDbContext.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAqwE8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T01:39:11.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "20260413013819_InitialBlahMigraitons.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Migrations\\20260413013819_InitialBlahMigraitons.cs",
+              "RelativeDocumentMoniker": "Migrations\\20260413013819_InitialBlahMigraitons.cs",
+              "ToolTip": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Migrations\\20260413013819_InitialBlahMigraitons.cs",
+              "RelativeToolTip": "Migrations\\20260413013819_InitialBlahMigraitons.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T01:38:20.203Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": ".dockerignore",
+              "DocumentMoniker": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\.dockerignore",
+              "RelativeDocumentMoniker": ".dockerignore",
+              "ToolTip": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\.dockerignore",
+              "RelativeToolTip": ".dockerignore",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAIwBYAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-11T14:57:24.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AIQuizApp.csproj",
+              "DocumentMoniker": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\AIQuizApp.csproj",
+              "RelativeDocumentMoniker": "AIQuizApp.csproj",
+              "ToolTip": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\AIQuizApp.csproj",
+              "RelativeToolTip": "AIQuizApp.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-11T14:56:00.834Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Dockerfile",
+              "RelativeDocumentMoniker": "Dockerfile",
+              "ToolTip": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Dockerfile",
+              "RelativeToolTip": "Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-11T14:55:34.265Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
               "ToolTip": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Controllers\\UsersController.cs",
               "RelativeToolTip": "Controllers\\UsersController.cs",
-              "ViewState": "AgIAALAAAAAAAAAAAAAcwL4AAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAQwL4AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-11T14:35:34.44Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-11T14:35:34.44Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\gusta\\Desktop\\Programs\\AIQuizApp\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAACsAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAADDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-11T14:24:42.946Z",
               "EditorCaption": ""
