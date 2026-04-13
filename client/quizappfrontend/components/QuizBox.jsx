@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 function QuizBox({info}) {
   const date = info.createdAt.split("T")[0].split("-");
-  console.log(date)
   return (
     <Link to={`/quiz?quizId=${info.id}`}>
       <div className="quizbox-item">

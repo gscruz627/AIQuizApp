@@ -10,7 +10,7 @@ import CommonNavbar from "../components/CommonNavbar";
 
 function QuizView() {
 
-    const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+    const SERVER_URL = import.meta.env.VITE_URL;
 
     const token = localStorage.getItem("access-token");
     const navigate = useNavigate();
