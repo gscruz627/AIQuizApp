@@ -6,9 +6,11 @@ function Sidebar({profile}) {
     const [organizations, setOrganizations] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
 
+    const SERVER_URL = import.meta.env.VITE_URL;
+
     async function loadMyOrganizations(){
         try{
-            const request = await fetch(`https://localhost:7015/api/organizations/info?userId=${localStorage.getItem("userid")}`, {
+            const request = await fetch(`${SERVER_URL}/api/organizations/info?userId=${localStorage.getItem("userid")}`, {
                 method: "GET",
                 headers: {
                     "Authorization" :  `Bearer ${localStorage.getItem("access-token")}`

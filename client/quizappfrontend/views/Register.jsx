@@ -12,12 +12,14 @@ function Register() {
     const [failureMsg, setFailureMsg] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
+    const SERVER_URL = import.meta.env.VITE_URL;
+
     async function register(e){
 
         e.preventDefault()
 
         try{
-            const request = await fetch("https://localhost:7015/api/users", {
+            const request = await fetch(`${SERVER_URL}/api/users`, {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json"

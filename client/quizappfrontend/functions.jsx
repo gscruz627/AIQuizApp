@@ -74,10 +74,10 @@ export async function checkAuth(navigate){
     if (refreshPromise) {
         return refreshPromise;
     }
-
+    const SERVER_URL = import.meta.env.VITE_URL;
     refreshPromise = (async () => {
         try {
-            const request = await fetch("https://localhost:7015/api/users/refresh-token", {
+            const request = await fetch(`${SERVER_URL}/api/users/refresh-token`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
