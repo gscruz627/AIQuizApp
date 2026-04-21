@@ -219,7 +219,7 @@ function Organization() {
                                     <p>{m.name} ({m.email})</p>
                                     <div>
                                         <i>{m.role}</i>
-                                        {organizationRole === "Admin" &&
+                                        {organizationRole === "Admin" && m.id != localStorage.getItem("userid") &&
                                         <button style={{marginLeft: "1rem" }} className="red-btn" onClick={() => expelMember(m.id)}>Expel</button>
                                         }
                                     </div>

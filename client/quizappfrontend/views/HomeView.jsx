@@ -70,9 +70,6 @@ function HomeView() {
 
 
     useEffect(() => {
-        if(organizationId){
-            loadOrganizationInformation();
-        }
         loadQuizes();
     }, [saved, my, organizationId])
 

@@ -9,7 +9,7 @@ function LandingView() {
                 <h3>AI Quiz App</h3>
                 {token ? 
                     <div>
-                        <button className="orange-btn">Access Quizzes</button>
+                        <Link to="/home"><button className="orange-btn">Access Quizzes</button></Link>
                         <button className="blue-btn" onClick={() => logout()}>Log Out</button>
                     </div>
                 :
