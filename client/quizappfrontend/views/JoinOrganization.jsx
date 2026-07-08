@@ -1,117 +1,168 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import Sidebar from '../components/Sidebar';
-import { useEffect } from 'react';
-import { logout, checkAuth } from '../functions';
-import CommonNavbar from '../components/CommonNavbar';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
+import { useEffect } from "react";
+import { checkAuth } from "../functions";
+import CommonNavbar from "../components/CommonNavbar";
 
 function JoinOrganization() {
+  const SERVER_URL = import.meta.env.VITE_URL;
+  const token = localStorage.getItem("access-token");
+  const navigate = useNavigate();
+  const [joinCode, setJoinCode] = useState("");
+  const [pendingRequests, setPendingRequests] = useState([]);
+  const [failureMsg, setFailureMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
 
-    const [joinCode, setJoinCode] = useState("");
-    const [pendingRequests, setPendingRequests] = useState([]);
-    const [failMessage, setFailMessage] = useState("");
-    const [successMessage, setSuccessMessage] = useState("");
-
-    const token = localStorage.getItem('access-token');
-    const navigate = useNavigate();
-
-    const SERVER_URL = import.meta.env.VITE_URL;
-
-    async function join(e){
-        e.preventDefault();
-        try{
-            await checkAuth(navigate);
-            const request = await fetch(`${SERVER_URL}/api/memberships/join`, {
-                method: "POST",
-                headers: {
-                    "Content-Type" : "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem("access-token")}`
-                },
-                body: JSON.stringify({
-                    joinCode
-                })
-            })
-            if (!request.ok) {
-                const errorMessage = await request.text();
-                alert(errorMessage);
-                return;
-            }
-            const info = await request.json();
-            alert("join requested!");
-            loadPendingRequests();
-
-        } catch(error){
-            alert(error.message);
-        }
+  async function join(e) {
+    e.preventDefault();
+    try {
+      await checkAuth(navigate);
+      const request = await fetch(`${SERVER_URL}/api/memberships/join`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          joinCode,
+        }),
+      });
+      if (!request.ok) {
+        const errorMessage = await request.text();
+        setFailureMsg(errorMessage);
+        return;
+      }
+      const info = await request.json();
+      setSuccessMsg("Join requested!");
+      setPendingRequests((prev) => [...prev, info]);
+    } catch (error) {
+      setFailureMsg("There was an error on the server side: " + error.message);
     }
+  }
 
-    async function cancelJoinRequest(joinrequestid){
-        try{
-            await checkAuth(navigate);
-            const request = await fetch(`${SERVER_URL}/api/memberships/resolution/${joinrequestid}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type" : "application/json",
-                    "Authorization" : `Bearer ${localStorage.getItem("access-token")}`
-                }, body: JSON.stringify({
-                    "action": "Cancel"
-                })
-            })
-            if(request.ok){
-                alert("canceled")
-                await loadPendingRequests();
-            } else{
-                alert("failed to cancel request.")
-            }
-        }   catch(error){
-            alert(error.message);
-        }
+  async function cancelJoinRequest(joinrequestid) {
+    try {
+      await checkAuth(navigate);
+      const request = await fetch(
+        `${SERVER_URL}/api/memberships/resolution/${joinrequestid}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            action: "Cancel",
+          }),
+        },
+      );
+      if (request.ok) {
+        setSuccessMsg("Request has been canceled");
+        setPendingRequests((prev) =>
+          prev.filter((request) => request.id !== joinrequestid),
+        );
+      } else {
+        const failureText = await request.text();
+        setFailureMsg("Something went wrong while canceling: " + failureText);
+      }
+    } catch (error) {
+      setFailureMsg("There was an error from the server: " + error.message);
     }
+  }
 
-    async function loadPendingRequests(){
-        try{
-            await checkAuth(navigate);
-            const request = await fetch(`${SERVER_URL}/api/memberships/joinrequests?userId=${localStorage.getItem("userid")}`, {
-                headers: {
-                    "Content-Type" : "application/json",
-                    "Authorization" : `Bearer ${localStorage.getItem("access-token")}`
-                }
-            })
-            const info = await request.json();
-            setPendingRequests(info);
-        } catch(error){
-            alert(error);
-        }
+  async function loadPendingRequests() {
+    try {
+      await checkAuth(navigate);
+      const request = await fetch(
+        `${SERVER_URL}/api/memberships/joinrequests?userId=${localStorage.getItem("userid")}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      const info = await request.json();
+      setPendingRequests(info);
+    } catch (error) {
+      setFailureMsg("There was an error from the server: " + error.message);
     }
+  }
 
-    useEffect( () => {
-        loadPendingRequests();
-    }, [])
-    return (
-        <div>
-            <CommonNavbar/>
-
-            <Sidebar/>
-
-            <div id="main-box">
-                <h1>Join Organization</h1>
-
-                <form onSubmit={(e) => join(e)}>
-                    <label for="code">Join Code: </label><br/>
-                    <input className="generate-quiz-numberQuestions" id="code" placeholder="ie. 123456" value={joinCode} onChange={(e) => setJoinCode(e.target.value)}/>
-                    <br/><br/><button type="submit" className="orange-btn">Join</button>
-                </form><br/>
-
-                <h2>Pending Join Requests</h2>
-                {pendingRequests && pendingRequests.map( (p) => (
-                    <div className='members-box'>
-                        <p>{p.orgName}</p>
-                        <button className="red-btn" onClick={() => cancelJoinRequest(p.id)}>Cancel</button>
-                    </div>
-                ))}
-            </div>
+  useEffect(() => {
+    loadPendingRequests();
+  }, []);
+  return (
+    <div>
+      <CommonNavbar />
+      {successMsg != "" && (
+        <div className="alert-box green-box consider-sidebar">
+          <span>{successMsg}</span>
+          <button className="alert-close" onClick={() => setSuccessMsg("")}>
+            ✕
+          </button>
         </div>
-    )
+      )}
+
+      {failureMsg != "" && (
+        <div className="alert-box red-box consider-sidebar">
+          <span>{failureMsg}</span>
+          <button className="alert-close" onClick={() => setFailureMsg("")}>
+            ✕
+          </button>
+        </div>
+      )}
+
+      <div className="content-sider">
+        <Sidebar />
+
+        <div className="main-box">
+          <div className="center-box">
+            <form onSubmit={(e) => join(e)}>
+              <div className="center-box-title">
+                <h4>Join Organization</h4>
+              </div>
+              <div>
+                <label htmlFor="code">Join Code: </label>
+                <input
+                  className="generate-quiz-numberQuestions"
+                  id="code"
+                  placeholder="ie. 123456"
+                  value={joinCode}
+                  onChange={(e) => setJoinCode(e.target.value)}
+                />
+                <br />
+                <button type="submit" className="primary-btn">
+                  Join
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <br />
+
+          <h3 className="primary-color">PENDING JOIN REQUESTS</h3>
+          <div className="main-inner-box">
+            <ul>
+              {pendingRequests &&
+                pendingRequests.map((p) => (
+                  <div className="quizbox-item" key={p.id}>
+                    <h4>{p.orgName}</h4>
+                    <button
+                      className="cancel-btn"
+                      onClick={() => cancelJoinRequest(p.id)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default JoinOrganization
+export default JoinOrganization;

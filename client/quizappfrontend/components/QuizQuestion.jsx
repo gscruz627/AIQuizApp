@@ -1,67 +1,117 @@
 import { useState } from "react";
-import { renderMath } from "../functions";
-function QuizQuestion({ question, answers, correctIndex, display, progress, setProgress, questionIndex, generated }) {
-    const [feedbackText, setFeedbackText] = useState("");
-    const [selectedIndex, setSelectedIndex] = useState(null);
+import { checkAuth, renderMath } from "../functions";
+function QuizQuestion({
+  question,
+  answers,
+  display,
+  progress,
+  setProgress,
+  questionIndex,
+  generated,
+  quizId,
+  setFailureMsg,
+}) {
+  const SERVER_URL = import.meta.env.VITE_URL;
+  const [feedbackText, setFeedbackText] = useState("");
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [correctIndex, setCorrectIndex] = useState(null);
 
-    // Check if this question is already answered
-    let answered;
-    if (progress) { answered = progress[questionIndex] !== undefined; }
+  const token = localStorage.getItem("access-token");
 
-    function feedback(i) {
-        // If already answered, do nothing
-        if (answered) return;
+  // Check if this question is already answered
+  let answered;
+  if (progress) {
+    answered = progress[questionIndex] !== undefined;
+  }
 
-        setSelectedIndex(i);
-        setProgress(prevProgress => ({
-            ...prevProgress,
-            [questionIndex]: i === correctIndex // mark correct/incorrect
-        }));
+  async function feedback(i) {
+    await checkAuth();
+    // If already answered, do nothing
+    if (answered) return;
+    setSelectedIndex(i);
+    try {
+      console.log("b");
+      const request = await fetch(
+        `${SERVER_URL}/api/quizes/${quizId}/answer/${questionIndex}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: {
+            selectedAnswer: i,
+          },
+        },
+      );
+      console.log("here");
+      const correctIndex = Number(await request.json());
 
-        setFeedbackText(i === correctIndex ? "Correct!" : "Incorrect!");
+      setCorrectIndex(correctIndex);
+
+      setProgress((prevProgress) => ({
+        ...prevProgress,
+        [questionIndex]: i === correctIndex,
+      }));
+
+      setFeedbackText(i === correctIndex ? "Correct!" : "Incorrect!");
+    } catch (error) {
+      setFailureMsg("There was an error from the server: " + error.message);
     }
+  }
 
-    function getClassName(i) {
-        if (selectedIndex === null) return "";
+  function getClassName(i) {
+    if (correctIndex === null || selectedIndex === null) return "";
 
-        if (i === correctIndex) return "correct-text";
-        if (i === selectedIndex) return "incorrect-text";
+    if (i === correctIndex) return "correct-text";
 
-        return "";
-    }
+    if (i === selectedIndex && selectedIndex !== correctIndex)
+      return "incorrect-text";
 
-    return (
+    return "";
+  }
+
+  return (
     <div className="question-block" style={{ display: display }}>
+      <h4>
+        {questionIndex + 1}. {renderMath(question)}
+      </h4>
 
-        <h4
-            dangerouslySetInnerHTML={{
-                __html: renderMath(`${questionIndex + 1}. ${question}`)
-            }}
-        />
+      <ul className="question-answers-container">
+        {answers &&
+          answers.map((a, i) => (
+            <li
+              key={a}
+              className={getClassName(i)}
+              onClick={() => !generated && !answered && feedback(i)}
+              style={{
+                pointerEvents: generated || answered ? "none" : "auto",
+                opacity: answered ? 0.6 : 1,
+              }}
+            >
+              {["A", "B", "C", "D"][i]} | {renderMath(a)}
+            </li>
+          ))}
+      </ul>
 
-        <ul className="question-answers-container">
-            {answers && answers.map((a, i) => (
-                <li
-                    key={i}
-                    className={getClassName(i)}
-                    onClick={() => !generated && !answered && feedback(i)}
-                    style={{
-                        pointerEvents: (generated || answered) ? "none" : "auto",
-                        opacity: answered ? 0.6 : 1
-                    }}
-                    dangerouslySetInnerHTML={{
-                        __html: renderMath(`${["A", "B", "C", "D"][i]} | ${a}`)
-                    }}
-                />
-            ))}
-        </ul>
-
-        {feedbackText && (
-            <div className="feedback-shown">
-                {feedbackText}
-            </div>
-        )}
+      {feedbackText && (
+        <div
+          style={{
+            padding: "1rem",
+            fontWeight: "bold",
+            color: feedbackText == "Correct!" ? "#20c820" : "#d51111",
+          }}
+        >
+          {feedbackText == "Correct!" && (
+            <i className="fa-solid fa-square-check"></i>
+          )}
+          {feedbackText == "Incorrect!" && (
+            <i className="fa-solid fa-circle-xmark"></i>
+          )}
+          &nbsp; {feedbackText}
+        </div>
+      )}
     </div>
-);
+  );
 }
-export default QuizQuestion
+export default QuizQuestion;

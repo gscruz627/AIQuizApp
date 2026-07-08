@@ -98,6 +98,9 @@ namespace AIQuizApp.Controllers
                 User = user,
                 UserId = userId,
             };
+            await dbcontext.JoinRequests.AddAsync(joinRequest);
+            await dbcontext.SaveChangesAsync();
+
             JoinRequestInfoDTO returnDTO = new()
             {
                 Id = joinRequest.Id,
@@ -106,8 +109,6 @@ namespace AIQuizApp.Controllers
                 OrgName = joinRequest.Organization.Name
             };
 
-            await dbcontext.JoinRequests.AddAsync(joinRequest);
-            await dbcontext.SaveChangesAsync();
 
             return Ok(returnDTO);
         }
@@ -120,7 +121,9 @@ namespace AIQuizApp.Controllers
             Guid userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             User user = (await dbcontext.Users.FindAsync(userId))!;
 
-            JoinRequest? joinRequest = await dbcontext.JoinRequests.FindAsync(joinrequestId);
+            JoinRequest? joinRequest = await dbcontext.JoinRequests
+            .Include(j => j.User)
+            .FirstOrDefaultAsync(j => j.Id == joinrequestId);
             if (joinRequest is null)
             {
                 return NotFound();
@@ -156,6 +159,19 @@ namespace AIQuizApp.Controllers
                 };
                 await dbcontext.Memberships.AddAsync(newMembership);
                 dbcontext.JoinRequests.Remove(joinRequest);
+
+                await dbcontext.SaveChangesAsync();
+
+
+                UserInOrgDTO newUser = new()
+                {
+                    Id = joinRequest.User.Id,
+                    Email = joinRequest.User.Email,
+                    Name = joinRequest.User.Name,
+                    Role = newMembership.Role
+                };
+
+                return Ok(newUser);
             }
 
             await dbcontext.SaveChangesAsync();

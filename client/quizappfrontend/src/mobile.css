@@ -1,0 +1,113 @@
+@media screen and (max-width: 768px) {
+  .content-sider {
+    grid-template-columns: 100% !important;
+  }
+  .show-if-large {
+    display: none;
+  }
+  .show-if-small {
+    display: block;
+  }
+  #sidebar {
+    width: auto;
+    min-height: 0;
+    padding: 1rem;
+  }
+  #sidebar .sidebar-open-button {
+    width: 80%;
+    margin: 1rem auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  #sidebar button {
+    width: 100%;
+    margin-left: 0;
+  }
+  .landing-nav {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: auto;
+    padding: 1rem;
+    width: 93%;
+  }
+  .landing-card-container {
+    grid-template-columns: 100%;
+    width: 100%;
+    row-gap: 1rem;
+  }
+  .landing-nav h3 {
+    width: 100%;
+    text-align: center;
+  }
+  .nav-dropdown {
+    display: block;
+    text-align: right;
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+  .landing-nav div:last-child,
+  .nav-inner-group-mobile {
+    flex-basis: 100%;
+    width: 100%;
+  }
+  .landing-nav div:last-child button,
+  .nav-inner-group-mobile button,
+  .nav-inner-group-mobile span,
+  .landing-nav div:last-child span {
+    display: block;
+    width: 80%;
+    margin: 1rem auto;
+  }
+  .landing-nav div:last-child span,
+  .nav-inner-group-mobile span {
+    display: block;
+    padding: 0.5rem 1.25rem;
+    text-align: center;
+  }
+  .nav-inner-group-mobile {
+    display: block !important;
+  }
+  .nav-inner-group {
+    display: none;
+  }
+  .main-box {
+    margin-left: 0;
+  }
+  .conditional-center {
+    margin: auto auto;
+    text-align: center;
+  }
+  .landing-nav form {
+    flex-basis: 100%;
+    margin-top: 1rem;
+  }
+  .landing-nav input {
+    width: 88%;
+  }
+  .generate-quiz-prompt {
+    width: 100%;
+  }
+  .navbar-on-auth {
+    width: auto;
+  }
+  .box-container {
+    grid-template-columns: 100%;
+  }
+  .decrease-size {
+    width: auto !important;
+  }
+  .quiz-container {
+    width: auto;
+  }
+  .center-box {
+    width: 100%;
+  }
+  .quizbox-item {
+    flex-wrap: wrap;
+    row-gap: 1rem;
+  }
+  .spaced-between {
+    margin: 1rem 0;
+  }
+}

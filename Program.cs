@@ -19,19 +19,26 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         ValidateAudience = false,
         ValidAudience = builder.Configuration["Jwt:Audience"],
         ValidateLifetime = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? "extremelylongstringaaahextremelylongstringaaahextremelylongstringaaahextremelylongstringaaahextremelylongstringaaahextremelylongstringaaahextremelylongstringaaahextremelylongstringaaahextremelylongstringaaahextremelylongstringaaahextremelylongstringaaahextremelylongstringaaahextremelylongstringaaahextremelylongstringaaahextremelylongstringaaah")),
         ValidateIssuerSigningKey = true
     };
 });
 
 builder.Services.AddCors(options =>
 {
+    options.AddPolicy("AllowAny",
+        policy =>
+        {
+            policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        });
+    /*
     options.AddPolicy("AllowSpecificOrigin",
         policy =>
         {
             policy.WithOrigins(builder.Configuration["Jwt:Audience"])
             .AllowAnyHeader().AllowAnyMethod();
         });
+    */
 });
 
 
@@ -46,7 +53,7 @@ using (var scope = app.Services.CreateScope())
 
 app.UseRouting();
 
-app.UseCors("AllowSpecificOrigin");
+app.UseCors("AllowAny");
 
 app.UseAuthentication();
 app.UseAuthorization();
