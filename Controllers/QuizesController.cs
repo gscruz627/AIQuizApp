@@ -1,9 +1,6 @@
 ﻿using AIQuizApp.Data;
 using AIQuizApp.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -139,7 +136,7 @@ namespace AIQuizApp.Controllers
 
         [HttpGet]
         [Route("{id:guid}")]
-        public async Task<ActionResult<Quiz>> GetById(Guid id)
+        public async Task<ActionResult<QuizNoAnswersDTO>> GetById(Guid id)
         {
             Guid userId;
             try
@@ -151,6 +148,7 @@ namespace AIQuizApp.Controllers
                 return Unauthorized();
             }
             Quiz? quiz = await dbcontext.Quizzes.FindAsync(id);
+       
             if (quiz is null)
             {
                 return NotFound();
@@ -163,7 +161,47 @@ namespace AIQuizApp.Controllers
                     return NotFound();
                 }
             }
-            return Ok(quiz);
+
+            QuizNoAnswersDTO quizDTO = new() {
+                Title = quiz.Title,
+                Answers = quiz.Answers,
+                AuthorId = quiz.AuthorId,
+                CreatedAt = quiz.CreatedAt,
+                Id = quiz.Id,
+                OrganizationId = quiz.OrganizationId,
+                Questions = quiz.Questions
+            };
+            return Ok(quizDTO);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("{quizId:guid}/answer/{idx:int}")]
+        public async Task<IActionResult> GetAsnwerForQuestion(Guid quizId, int idx)
+        {
+            Guid userId;
+            try
+            {
+                userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            }
+            catch (Exception)
+            {
+                return Unauthorized();
+            }
+            Quiz? quiz = await dbcontext.Quizzes.FindAsync(quizId);
+            if (quiz is null)
+            {
+                return NotFound();
+            }
+            if (quiz.OrganizationId is not null)
+            {
+                Membership? membership = await dbcontext.Memberships.Where(m => m.OrganizationId == quiz.OrganizationId && m.UserId == userId).FirstOrDefaultAsync();
+                if (membership is null)
+                {
+                    return NotFound();
+                }
+            }
+            return Ok(quiz.CorrectAnswerIndices[idx]);
         }
 
         [HttpGet]

@@ -1,0 +1,91 @@
+#################################################
+# Visual Studio / .NET
+#################################################
+
+bin/
+obj/
+.vs/
+TestResults/
+artifacts/
+
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+#################################################
+# Rider / VS Code
+#################################################
+
+.idea/
+.vscode/
+
+#################################################
+# ASP.NET Core
+#################################################
+
+appsettings.Development.json
+appsettings.Local.json
+
+#################################################
+# Entity Framework
+#################################################
+
+# Uncomment if you NEVER want migrations in Git
+# Migrations/
+
+#################################################
+# Environment files
+#################################################
+
+.env
+.env.*
+!.env.example
+
+#################################################
+# Logs
+#################################################
+
+*.log
+logs/
+
+#################################################
+# React / Vite frontend
+#################################################
+
+client/quizappfrontend/node_modules/
+client/quizappfrontend/dist/
+client/quizappfrontend/.vite/
+client/quizappfrontend/coverage/
+
+#################################################
+# npm / pnpm / yarn
+#################################################
+
+client/quizappfrontend/npm-debug.log*
+client/quizappfrontend/yarn-debug.log*
+client/quizappfrontend/yarn-error.log*
+client/quizappfrontend/pnpm-debug.log*
+
+#################################################
+# OS files
+#################################################
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+#################################################
+# Temporary files
+#################################################
+
+*.tmp
+*.temp
+*.cache
+
+#################################################
+# Publish output
+#################################################
+
+publish/
+wwwroot/dist/

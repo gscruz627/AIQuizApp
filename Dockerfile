@@ -11,7 +11,6 @@ RUN dotnet publish "AIQuizApp.csproj" -c Release -o /app
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
 
-# 🔧 ADD THIS BLOCK
 RUN apt-get update && apt-get install -y \
     libkrb5-3 \
     && rm -rf /var/lib/apt/lists/*

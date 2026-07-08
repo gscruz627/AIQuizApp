@@ -1,0 +1,60 @@
+button,
+.btn {
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 0.5rem 1.25rem;
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+}
+
+button:hover {
+  filter: brightness(70%);
+}
+
+.landing-nav button {
+  margin: 0 1rem;
+}
+
+.primary-btn {
+  background-color: #68778c;
+}
+
+.secondary-btn {
+  background-color: #fff;
+  border: 2px solid #68778c;
+  color: #68778c;
+  font-size: 14px;
+}
+
+.cancel-btn {
+  background-color: #fb6c20;
+}
+
+.purple-btn {
+  background-color: #9b4b9c;
+}
+
+.blue-btn {
+  background-color: #225a9f;
+}
+
+.primary-color {
+  color: #68778c;
+}
+
+.gray-color {
+  color: #545454;
+}
+
+.inverse-button {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.clickable-link:hover {
+  text-decoration: underline;
+  font-weight: bolder;
+  cursor: pointer;
+}
