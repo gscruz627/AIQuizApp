@@ -2,6 +2,8 @@
 
 AI Quiz App is an application that makes use of AI to generate a quiz, my app formats it and displays it to the user in a nice responsive UI and the user can take such quiz.
 
+Demo here: https://aiquizapp.gustavolacruz.com
+
 ## Pictures
 
 ![Dashboard showing quizzes](/images/quizzes.png)
